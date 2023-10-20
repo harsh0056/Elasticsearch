@@ -4,3 +4,4 @@
 {"level":"info","message":"server started on port 4000","service":"user-service"}
 {"level":"info","message":"this is / route called","service":"user-service"}
 {"level":"info","message":"got error","service":"user-service"}
+{"level":"debug","message":"sommething went wrong! Try Again","service":"user-service"}
