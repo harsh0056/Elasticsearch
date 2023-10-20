@@ -1,5 +1,27 @@
 import winston from 'winston'
 
+
+const options={
+    file:{
+        level:'info',
+        filename:'./error/error.log',
+        handleExceptions:true,
+        json:true,
+
+        maxSize:5242880, //5MB
+        maxFiles:5,
+        colorize:false,
+
+    },
+    console:{
+        level:'debug',
+        filename:'./combined/combined.log',
+        handleExceptions:true,
+        json:true,
+        colorize:true,
+    }
+}
+
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
@@ -9,8 +31,8 @@ const logger = winston.createLogger({
     // - Write all logs with importance level of `error` or less to `error.log`
     // - Write all logs with importance level of `info` or less to `combined.log`
     //
-    new winston.transports.File({ filename: './error/error.log', level: 'error' }),
-    new winston.transports.File({ filename: '/combined/combined.log' }),
+    new winston.transports.File(options.file),
+    new winston.transports.File(options.console),
   ],
 });
 
@@ -23,3 +45,6 @@ if (process.env.NODE_ENV !== 'production') {
     format: winston.format.simple(),
   }));
 }
+
+
+export default logger;
